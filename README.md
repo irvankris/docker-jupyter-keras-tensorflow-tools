@@ -80,3 +80,5 @@ print(output_details) <br>
 11. dan lain-lain :D
 
 Semoga Bermanfaat. Terima Kasih
+
+"mengolah data itu mudah. yang sangat susah adalah mengumpulkan datanya."
