@@ -50,16 +50,12 @@ docker rm -f keras; docker run --name keras -p 2222:22 -p 8888:8888 -p 8080:8000
 ```
 akses ssh di port 2222. <br>
 akses web jupyter di port 8888. <br>
-akses tensorboard di port 6006.
+akses tensorboard di port 6006. <br>
+akses web service pada port 8080 dan 8081.  <br>
 
-akses web service pada port 8080 dan 8081. 
-
-
-login ssh : (sesuai pada Dockerfile_ssh) 
-
-user : root 
-
-pass : root 
+login ssh : (sesuai pada Dockerfile_ssh)  <br>
+user : root  <br>
+pass : root  <br>
 
 saya menggunakan container ini untuk menjalankan :
 1. https://raw.githubusercontent.com/wkentaro/labelme/master/examples/instance_segmentation/labelme2coco.py   
@@ -73,13 +69,13 @@ saya menggunakan container ini untuk menjalankan :
 9. python /notebooks/tools/tensorflow_quantization/quantization/quantize_graph.py 
 10. script :
 
-import tensorflow as tf 
-interpreter = tf.contrib.lite.Interpreter("detect.tflite") 
-interpreter.allocate_tensors() 
-input_details = interpreter.get_input_details() 
-output_details = interpreter.get_output_details() 
-print(input_details) 
-print(output_details)
+import tensorflow as tf  <br>
+interpreter = tf.contrib.lite.Interpreter("detect.tflite")  <br>
+interpreter.allocate_tensors()  <br>
+input_details = interpreter.get_input_details()  <br>
+output_details = interpreter.get_output_details()  <br>
+print(input_details)  <br>
+print(output_details) <br>
 
 11. dan lain-lain :D
 
