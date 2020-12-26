@@ -1,6 +1,19 @@
 # Build
 
-NOTE: You can only use the GPU version on machines with GPUs because libcuda.so.1 will otherwise be inaccessible
+NOTE: ini adalah fork dari https://github.com/cannin/docker-jupyter-keras-tensorflow-tools
+
+docker ini saya gunakan sebagai development pipeline untuk pengembangan TensorFlow.
+
+setelah clone, masuk ke dalam direktory docker-jupyter-keras-tensorflow-tools.
+
+lalu 
+
+clone model dan tensorflow
+git clone https://github.com/tensorflow/models.git
+git clone https://github.com/tensorflow/tensorflow.git
+
+
+
 
 ```
 docker build -t cannin/jupyter-keras-tensorflow-tools:tf-1.4.0-devel-py3 -f Dockerfile .
