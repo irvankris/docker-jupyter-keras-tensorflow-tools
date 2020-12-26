@@ -1,17 +1,5 @@
 # Build
 
-
-
-```
-
-docker build -t cannin/jupyter-keras-tensorflow-tools:tf-1.15.2-py3 -f Dockerfile .
-docker build -t cannin/jupyter-keras-tensorflow-tools-sshd:tf-1.15.2-py3 -f Dockerfile_ssh .
-
-```
-untuk mengganti ke tensorflow versi 2, silahkan edit Dockerfile dan sesuaikan (atur hashtag) dengan image docker tensorflow 2.
-lalu sesuaikan perintah build-nya dengan versi image docker tensorflow yang dipilih.
-
-
 NOTE: ini adalah fork dari https://github.com/cannin/docker-jupyter-keras-tensorflow-tools
 
 docker/container ini saya gunakan sebagai development-pipeline/development-rig untuk pemanfaatan TensorFlow.
@@ -26,6 +14,21 @@ git clone https://github.com/tensorflow/tensorflow.git
 
 akan menghasilkan direktory models dan tensorflow
 
+lalu jalankan build.
+
+```
+
+docker build -t cannin/jupyter-keras-tensorflow-tools:tf-1.15.2-py3 -f Dockerfile .
+docker build -t cannin/jupyter-keras-tensorflow-tools-sshd:tf-1.15.2-py3 -f Dockerfile_ssh .
+
+```
+
+untuk mengganti ke tensorflow versi 2, sebelum build,  silahkan edit Dockerfile dan sesuaikan (atur hashtag) dengan image docker tensorflow 2.
+lalu sesuaikan perintah build-nya dengan versi image docker tensorflow yang dipilih.
+
+
+
+
 direktory models akan di-COPY (bukan di-map), sehingga perubahan direktory models di dalam container, tidak bisa diakses langsung atau tidak ter-replikasi pada host.
 
 saya hanya menggunakan tensorflow CPU
@@ -38,7 +41,7 @@ buat direktory notebooks.
 
 gunakan mapping direktory notebooks, sehingga ketika bekerja di dalam container (melalui SSH) kita manfaatkan direktory notebooks sebagai project-directory, untuk memudahkan akses project-directory saat berada di host-server.
 
-untuk menjalankan coontainer :
+untuk menjalankan container :
 
 # SSH
 ```
