@@ -27,7 +27,12 @@ docker build -t cannin/jupyter-keras-tensorflow-tools-sshd:tf-1.4.0-devel-py3 -f
 ```
 
 untuk pengembangan tensorflow, saya lebih menyukai ssh ke container ,seolah saya sedang bekerja dalam server tersendiri.
-saya menambahkan expose port 8080 dan 5000 untuk expose web server/service, seperti pada https://github.com/AIZOOTech/flask-object-detection   .
+
+saya menambahkan expose port 8080 dan 5000 untuk expose web server/service, untuk mengimplementasikan hasil inference seperti pada : https://github.com/AIZOOTech/flask-object-detection   .
+
+buat direktory notebooks.
+
+gunakan mapping direktory notebooks, sehingga ketika bekerja di dalam container (melalui SSH) kita manfaatkan direktory notebooks sebagai project-directory
 
 # SSH
 ```
