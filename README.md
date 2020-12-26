@@ -1,8 +1,20 @@
 # Build
 
+
+
+```
+
+docker build -t cannin/jupyter-keras-tensorflow-tools:tf-1.15.2-py3 -f Dockerfile .
+docker build -t cannin/jupyter-keras-tensorflow-tools-sshd:tf-1.15.2-py3 -f Dockerfile_ssh .
+
+```
+untuk mengganti ke tensorflow versi 2, silahkan edit Dockerfile dan sesuaikan (atur hashtag) dengan image docker tensorflow 2.
+lalu sesuaikan perintah build-nya dengan versi image docker tensorflow yang dipilih.
+
+
 NOTE: ini adalah fork dari https://github.com/cannin/docker-jupyter-keras-tensorflow-tools
 
-docker ini saya gunakan sebagai development pipeline untuk pengembangan TensorFlow.
+docker/container ini saya gunakan sebagai development-pipeline/development-rig untuk pemanfaatan TensorFlow.
 
 setelah clone, masuk ke dalam direktory docker-jupyter-keras-tensorflow-tools.
 
@@ -16,15 +28,7 @@ akan menghasilkan direktory models dan tensorflow
 
 direktory models akan di-COPY (bukan di-map), sehingga perubahan direktory models di dalam container, tidak bisa diakses langsung atau tidak ter-replikasi pada host.
 
-untuk mengganti ke tensorflow versi 2, silahkan edit Dockerfile dan sesuaikan (atur hashtag) dengan docker tensorflow 2.
-
 saya hanya menggunakan tensorflow CPU
-
-```
-docker build -t cannin/jupyter-keras-tensorflow-tools:tf-1.4.0-devel-py3 -f Dockerfile .
-docker build -t cannin/jupyter-keras-tensorflow-tools-sshd:tf-1.4.0-devel-py3 -f Dockerfile_ssh .
-
-```
 
 untuk pengembangan tensorflow, saya lebih menyukai ssh ke container ,seolah saya sedang bekerja dalam server tersendiri.
 
@@ -32,10 +36,38 @@ saya menambahkan expose port 8080 dan 5000 untuk expose web server/service, untu
 
 buat direktory notebooks.
 
-gunakan mapping direktory notebooks, sehingga ketika bekerja di dalam container (melalui SSH) kita manfaatkan direktory notebooks sebagai project-directory
+gunakan mapping direktory notebooks, sehingga ketika bekerja di dalam container (melalui SSH) kita manfaatkan direktory notebooks sebagai project-directory, untuk memudahkan akses project-directory saat berada di host-server.
+
+untuk menjalankan coontainer :
 
 # SSH
 ```
 docker rm -f keras; docker run --name keras -p 2222:22 -p 8888:8888 -p 8080:8000 -p 8081:5000 -p 6006:6006 -v $(pwd):/notebooks -w /notebooks -it cannin/jupyter-keras-tensorflow-tools-sshd:tf-1.15.2-py3 jupyter lab --allow-root --no-browser
 
 ```
+login ssh : (sesuai pada Dockerfile_ssh) 
+user : root
+pass : root
+
+saya menggunakan container ini untuk menjalankan :
+1. https://raw.githubusercontent.com/wkentaro/labelme/master/examples/instance_segmentation/labelme2coco.py   
+2. python create_coco_tf_record.py 
+3. python model_main.py 
+4. tensorboard --logdir=/notebooks/data/dataset02/detectiontrain
+5. python export_inference_graph.py 
+6. python models/research/object_detection/export_tflite_ssd_graph.py  
+7. tflite_convert
+8. python import_pb_to_tensorboard.py
+9. python /notebooks/tools/tensorflow_quantization/quantization/quantize_graph.py 
+10. script :
+
+import tensorflow as tf
+interpreter = tf.contrib.lite.Interpreter("detect.tflite")
+interpreter.allocate_tensors()
+input_details = interpreter.get_input_details()
+output_details = interpreter.get_output_details()
+print(input_details)
+print(output_details)
+
+11. dan lain-lain :D
+
