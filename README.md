@@ -12,6 +12,9 @@ clone model dan tensorflow
 git clone https://github.com/tensorflow/models.git
 git clone https://github.com/tensorflow/tensorflow.git
 
+akan menghasilkan direktory models dan tensorflow
+
+direktory models akan di-COPY (bukan di-map), sehingga perubahan di dalam container, tidak bisa diakses langsung dalam host.
 
 
 
