@@ -45,6 +45,11 @@ untuk menjalankan coontainer :
 docker rm -f keras; docker run --name keras -p 2222:22 -p 8888:8888 -p 8080:8000 -p 8081:5000 -p 6006:6006 -v $(pwd):/notebooks -w /notebooks -it cannin/jupyter-keras-tensorflow-tools-sshd:tf-1.15.2-py3 jupyter lab --allow-root --no-browser
 
 ```
+akses ssh di port 2222.
+akses web jupyter di port 8888.
+akses tensorboard di port 6006.
+akses web service pada port 8080 dan 8081.
+
 login ssh : (sesuai pada Dockerfile_ssh) 
 user : root
 pass : root
@@ -61,13 +66,14 @@ saya menggunakan container ini untuk menjalankan :
 9. python /notebooks/tools/tensorflow_quantization/quantization/quantize_graph.py 
 10. script :
 
-import tensorflow as tf
-interpreter = tf.contrib.lite.Interpreter("detect.tflite")
-interpreter.allocate_tensors()
-input_details = interpreter.get_input_details()
-output_details = interpreter.get_output_details()
-print(input_details)
+import tensorflow as tf 
+interpreter = tf.contrib.lite.Interpreter("detect.tflite") 
+interpreter.allocate_tensors() 
+input_details = interpreter.get_input_details() 
+output_details = interpreter.get_output_details() 
+print(input_details) 
 print(output_details)
 
 11. dan lain-lain :D
 
+Semoga Bermanfaat. Terima Kasih
