@@ -48,10 +48,8 @@ untuk menjalankan container :
 docker rm -f keras; docker run --name keras -p 2222:22 -p 8888:8888 -p 8080:8000 -p 8081:5000 -p 6006:6006 -v $(pwd):/notebooks -w /notebooks -it cannin/jupyter-keras-tensorflow-tools-sshd:tf-1.15.2-py3 jupyter lab --allow-root --no-browser
 
 ```
-akses ssh di port 2222.
-
-akses web jupyter di port 8888. 
-
+akses ssh di port 2222. <br>
+akses web jupyter di port 8888. <br>
 akses tensorboard di port 6006.
 
 akses web service pada port 8080 dan 8081. 
