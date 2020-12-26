@@ -56,5 +56,4 @@ EXPOSE 5000
 #WORKDIR /notebooks
 WORKDIR "/root/models/research/object_detection"
 
-
 CMD ["/usr/bin/supervisord"]
